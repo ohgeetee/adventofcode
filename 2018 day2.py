@@ -1,6 +1,8 @@
+import itertools
 
 #part1
-boxlist = open("day2input.txt").read().strip().split("\n")
+#boxlist = open("day2input.txt").read().strip().split("\n")
+boxlist = ["abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"]
 c = [0, 0]
 for box in boxlist:
     x2 = False
@@ -15,3 +17,17 @@ for box in boxlist:
             x3 = True
 print(c)
 print(c[1]*c[0])
+
+#part2
+#boxlist = ["abcde", "fghij", "klmno", "pqrst", "fguij", "axcye", "wvxyz"]
+boxlist = open("day2input.txt").read().strip().split("\n")
+contenders = []
+for a, b in itertools.combinations(boxlist, 2):
+    count = sum(1 for x, y in zip(a, b) if x != y)
+    if count == 1:
+        contenders += a, b
+print(contenders)
+    #print('a =', a, '| b =', b)
+    #count = sum(1 for x, y in zip(a, b) if x != y)
+    #print(count)
+    

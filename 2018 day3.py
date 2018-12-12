@@ -4,7 +4,6 @@ import numpy as np
 w = 1000
 h = 1000
 
-
 swatchlist = open("day3input.txt").read().strip().split("\n")
 fabric = np.zeros((w, h), dtype=int)
 
@@ -34,6 +33,7 @@ print(overlap)
 #print("Lone ID = ", oid)
 #print(fabric)
 
+#part 2
 for swatches in swatchlist:
     id_, _, position, dimension = swatches.split(" ") #parses line  ['#1', '@', '1,3:', '4x4'] from '#1 @ 1,3: 4x4'
     #print(swatches)
@@ -48,7 +48,7 @@ for swatches in swatchlist:
     id_, x, y, width, height = int(id_), int(x), int(y), int(width), int(height) #change str to int
 
     swatch = fabric[y:y + height,x:x + width]
-    if np.sum(swatch) == np.prod(fabric[y:y + height,x:x + width].shape):
-        loneid = id_
+    if np.sum(swatch) == np.prod(fabric[y:y + height,x:x + width].shape): #compare total of current swatch to product of swatch
+        loneid = id_ #if sum = product, all indices = 1, which means nothing overlapped
 
 print("Lone ID = ", loneid)
